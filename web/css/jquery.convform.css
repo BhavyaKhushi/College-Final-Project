@@ -231,8 +231,8 @@ span.clear {
 .logo{
 	position: fixed;
     top: 0px;
-	left: 5%;
-	padding: 10px;
+	left: 4%;
+	padding: 5px;
     padding-bottom: 20px;
 }
 
@@ -314,4 +314,108 @@ body {
 
     color: #9ee84f;
   }
+}
+
+/* *********************************************************************************************************** */
+
+/* --- DARK BLUE / NIGHT THEME WITH VIBRANT ACCENTS --- */
+
+/* Main Body */
+body {
+    background: #0D1B2A;
+    color: #FFFFFF;
+}
+
+/* Header */
+.header-wrapper {
+    background-color: #1B263B;
+    color: #FFFFFF;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.awesome {
+    color: #FF6F61;  /* Bright Coral */
+    font-size: 18px;
+    font-weight: bold;
+    -webkit-animation: colorchange 20s infinite alternate;
+}
+
+/* Vibrant Gradient Messages */
+div.conv-form-wrapper div#messages div.message.to {
+    background: linear-gradient(to right, #1E90FF 30%, #00CED1 70%);
+    color: #FFFFFF;
+    border-top-left-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+div.conv-form-wrapper div#messages div.message.from {
+    background: linear-gradient(to left, #FF6347 0%, #FF1493 100%);
+    color: #FFFFFF;
+    border-top-right-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Input field */
+input.userInputDynamic {
+    background-color: #1B263B;
+    color: #FFFFFF;
+    border: 2px solid #00CED1;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+input.userInputDynamic::placeholder {
+    color: #AAAAAA;
+}
+
+/* Submit Button */
+div.convFormDynamic button.submit {
+    background: #FF6347;  /* Vibrant Coral */
+    color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+div.convFormDynamic button.submit:hover {
+    background: #FF1493; /* Deep Pink */
+    color: #FFFFFF;
+    box-shadow: 0 8px 12px rgba(255, 20, 147, 0.4);
+}
+
+/* Message Transition Effects */
+@keyframes colorchange {
+    0% { color: #1E90FF; } /* Bright Blue */
+    20% { color: #00CED1; } /* Cyan */
+    40% { color: #FF6347; } /* Vibrant Coral */
+    60% { color: #FF1493; } /* Deep Pink */
+    80% { color: #32CD32; } /* Lime Green */
+    100% { color: #FFD700; } /* Golden Yellow */
+}
+
+/* Scrollbar */
+div.conv-form-wrapper div#messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+div.conv-form-wrapper div#messages::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #FF1493, #FF6347);
+    border-radius: 10px;
+}
+
+div.conv-form-wrapper div#messages::-webkit-scrollbar-track {
+    background: #0D1B2A;
+}
+
+/* Smooth animation for messages */
+div.conv-form-wrapper div.message.to, div.conv-form-wrapper div.message.from {
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Adjusts the margins for alternate messages */
+.message.to + .message.from, .message.from + .message.to {
+    margin-top: 15px;
 }
