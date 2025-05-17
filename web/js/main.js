@@ -44,6 +44,7 @@ function getUserInput() {
     msg = element.value;
     if (msg.length != 0) {
         element.value = "";
+        addUserMsg(msg);
         eel.getUserInput(msg);
     }
 }
