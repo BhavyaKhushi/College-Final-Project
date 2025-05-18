@@ -12,8 +12,6 @@ from os.path import isfile, join
 from threading import Thread
 import app
 from network_tracker import run_network_usage_tracker
-
-# New Imports
 import subprocess
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 from comtypes import CLSCTX_ALL
@@ -40,13 +38,13 @@ path = ''
 is_awake = True
 
 # ------------------Functions----------------------
-def reply(audio):
+def reply(audio):      # Converts the audio message to speech using pyttsx3
     app.ChatBot.addAppMsg(audio)
     print(audio)
     engine.say(audio)
     engine.runAndWait()
 
-def wish():
+def wish():            # Greets the user based on the time of day
     hour = int(datetime.datetime.now().hour)
     if hour >= 0 and hour < 12:
         reply("Good Morning!")
@@ -56,20 +54,22 @@ def wish():
         reply("Good Evening!")
     reply("I am Nova, how may I help you?")
 
-def run_translator_gui():
+def run_translator_gui():     # Launches the voice translator GUI
     try:
         print("Launching Voice Translator GUI...")
         import main
         main.run_translator_gui()
+        reply("Voice Translator closed.")
     except Exception as e:
         print(f"Error launching Translator: {str(e)}")
         reply("Sorry, there was an error while launching the Voice Translator.")
+
 
 with sr.Microphone() as source:
     r.energy_threshold = 500
     r.dynamic_energy_threshold = False
 
-def record_audio():
+def record_audio():         # Records audio from the microphone and converts it to text
     with sr.Microphone() as source:
         r.pause_threshold = 0.8
         voice_data = ''
@@ -83,7 +83,7 @@ def record_audio():
         return voice_data.lower()
 
 # New: Volume Control
-def change_volume(up=True):
+def change_volume(up=True):      # Increases or decreases the system volume by 10%
     current_volume = volume_control.GetMasterVolumeLevelScalar()
     step = 0.1
     new_volume = current_volume + step if up else current_volume - step
@@ -92,8 +92,8 @@ def change_volume(up=True):
     reply(f"Volume {'increased' if up else 'decreased'}")
 
 
-# New: Open Windows Settings
-def open_settings_page(setting):
+# New: Open Windows Settings 
+def open_settings_page(setting):  # Opens a specific Windows settings page
     try:
         subprocess.run(["start", f"ms-settings:{setting}"], shell=True)
         reply(f"Opening {setting.replace('-', ' ')} settings.")
@@ -138,7 +138,7 @@ def open_application(app_name):
         reply(f"Error opening {app_name}: {str(e)}")
 
 
-def respond(voice_data):
+def respond(voice_data):      #  Processes voice commands and performs actions
     global file_exp_status, files, is_awake, path
     print(voice_data)
     voice_data = voice_data.lower().replace('nova', '')  # Ensure voice_data is properly sanitized
@@ -184,9 +184,13 @@ def respond(voice_data):
         except:
             reply('Please check your Internet Connection')
 
-    elif 'bye' in voice_data or 'by' in voice_data:
+    elif 'goodbye' in voice_data or 'bye' in voice_data or 'by' in voice_data:
         reply("Goodbye! Have a nice day.")
-        is_awake = False
+        try:
+            app.ChatBot.closeApp()  # Call your GUI cleanup if it exists
+        except Exception as e:
+            print(f"Error closing GUI: {e}")
+        sys.exit(0)  # Exit cleanly
 
     # SYSTEM SETTINGS CONTROLS
     elif 'increase volume' in voice_data:
@@ -298,7 +302,7 @@ while not app.ChatBot.started:
 
 wish()
 voice_data = None
-while True:
+while True:       # The main loop continuously listens for user input
     if app.ChatBot.isUserInput():
         voice_data = app.ChatBot.popUserInput()
     else:

@@ -144,13 +144,13 @@ def open_about_page():      # about page
 
     # Create a link to the GitHub repository
     github_link = ttk.Label(about_window, text="github.com/SamirPaulb/real-time-voice-translator", underline=True, foreground="blue", cursor="hand2")
-    github_link.bind("<Button-1>", lambda e: open_webpage("https://github.com/SamirPaulb/real-time-voice-translator"))
+    github_link.bind("<Button-1>", lambda e: open_webpage("https://github.com/BhavyaKhushi/College-Final-Project/tree/anshul"))
     github_link.pack()
 
     # Create a text widget to display the about text
     about_text = tk.Text(about_window, height=10, width=50)
     about_text.insert("1.0", """
-    A machine learning project that translates voice from one language to another in real time while preserving the tone and emotion of the speaker, and outputs the result in MP3 format. Choose input and output languages from the dropdown menu and start the translation!
+    A machine learning project that translates voice from one language to another language and outputs the result in MP3 format. Choose input and output languages from the dropdown menu and start the translation!
     """)
     about_text.pack()
 
