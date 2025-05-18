@@ -133,7 +133,7 @@ def open_application(app_name):
             subprocess.Popen('explorer.exe')
             reply("Opening File Explorer...")
         else:
-            reply(f"Sorry, I can't open {app_name}.")
+            reply(f"Sorry, I can't open {app_name} yet.")
     except Exception as e:
         reply(f"Error opening {app_name}: {str(e)}")
 
@@ -168,9 +168,9 @@ def respond(voice_data):
         url = 'https://google.com/search?q=' + voice_data.split('search')[1]
         try:
             webbrowser.get().open(url)
-            reply('This is what I found Sir')
+            reply('This is what I found')
         except:
-            reply('Please check your Internet')
+            reply('Please check your Internet Connection')
 
     elif 'location' in voice_data:
         reply('Which place are you looking for?')
@@ -180,12 +180,12 @@ def respond(voice_data):
         url = 'https://google.nl/maps/place/' + temp_audio + '/&amp;'
         try:
             webbrowser.get().open(url)
-            reply('This is what I found Sir')
+            reply('This is what I found')
         except:
-            reply('Please check your Internet')
+            reply('Please check your Internet Connection')
 
     elif 'bye' in voice_data or 'by' in voice_data:
-        reply("Goodbye Sir! Have a nice day.")
+        reply("Goodbye! Have a nice day.")
         is_awake = False
 
     # SYSTEM SETTINGS CONTROLS

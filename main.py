@@ -121,7 +121,7 @@ def update_translation():
             except sr.UnknownValueError:
                 output_text.insert(tk.END, "Could not understand!\n")
             except sr.RequestError:
-                output_text.insert(tk.END, "Could not request from Google!\n")
+                output_text.insert(tk.END, "Could not request from API!\n")
 
     win.after(100, update_translation)
 
