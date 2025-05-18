@@ -230,7 +230,7 @@ span.clear {
 }
 .logo{
 	position: fixed;
-    top: 0px;
+    top: -5px;
 	left: 4%;
 	padding: 5px;
     padding-bottom: 20px;
@@ -248,7 +248,7 @@ body {
 
   width:100%;
   margin-top: 12px;
-  margin-left: 12px;
+  margin-left: 0px;
   text-align: center;
 
   color:#313131;
