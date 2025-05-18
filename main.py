@@ -167,6 +167,13 @@ def open_webpage(url):      # Opens a web page in the user's default web browser
     import webbrowser
     webbrowser.open(url)
 
+def clear_all_text():
+    input_text.delete("1.0", tk.END)
+    output_text.delete("1.0", tk.END)
+
+# Create the "Clear All" button
+clear_button = tk.Button(win, text="Clear All", command=clear_all_text)
+clear_button.place(relx=0.5, rely=0.82, anchor="c")  # Adjust position as needed
 
 
 # Create the "Run" button
